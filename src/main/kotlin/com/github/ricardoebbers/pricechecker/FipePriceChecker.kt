@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class FipePriceChecker
 
 fun main(args: Array<String>) {
-	runApplication<FipePriceChecker>(*args)
+    runApplication<FipePriceChecker>(*args)
 }
