@@ -47,6 +47,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.4.2")
     testImplementation("org.springframework.amqp:spring-rabbit-test")
 }
 
