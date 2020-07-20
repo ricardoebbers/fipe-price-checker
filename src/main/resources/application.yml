@@ -1,16 +1,7 @@
 spring:
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
   datasource:
-    driverClassName: org.h2.Driver
-    username: ${DB_USER}
-    password: ${DB_PASS}
-    url: ${DB_URL}
-  h2.console:
-    enabled: true
-    path: /h2
-    settings:
-      trace: false
-      web-allow-others: false
-
+    username: postgres
+    password: password
+    url: jdbc:postgresql://db:5432/db

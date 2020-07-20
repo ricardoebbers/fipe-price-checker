@@ -39,7 +39,7 @@ dependencies {
     // spring rabbitMQ
     implementation("org.springframework.boot:spring-boot-starter-amqp")
     // h2
-    implementation("com.h2database:h2:1.4.200")
+    runtimeOnly("org.postgresql:postgresql")
     // flyway
     implementation("org.flywaydb:flyway-core")
     // swagger
@@ -67,9 +67,9 @@ tasks.withType<KotlinCompile> {
 }
 
 flyway {
-    url = System.getenv("DB_URL")
-    user = System.getenv("DB_USER")
-    password = System.getenv("DB_PASS")
+    url = "jdbc:postgresql://db:5432/db"
+    user = "postgres"
+    password = "password"
     baselineOnMigrate = true
     locations = arrayOf("filesystem:src/main/resources/db/migration")
 }
