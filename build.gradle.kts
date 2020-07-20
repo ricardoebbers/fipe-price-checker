@@ -6,7 +6,6 @@ plugins {
     kotlin("jvm") version "1.3.72"
     kotlin("plugin.spring") version "1.3.72"
     kotlin("plugin.jpa") version "1.3.72"
-    id("org.flywaydb.flyway") version "6.5.1"
 }
 
 group = "com.github.ricardoebbers"
@@ -41,7 +40,7 @@ dependencies {
     // h2
     runtimeOnly("org.postgresql:postgresql")
     // flyway
-    implementation("org.flywaydb:flyway-core")
+    compileOnly("org.flywaydb:flyway-core")
     // swagger
     implementation("org.springdoc:springdoc-openapi-ui:1.4.3")
     implementation("org.springdoc:springdoc-openapi-kotlin:1.4.3")
@@ -64,12 +63,4 @@ tasks.withType<KotlinCompile> {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "1.8"
     }
-}
-
-flyway {
-    url = System.getenv("POSTGRES_URL")
-    user = System.getenv("POSTGRES_USER")
-    password = System.getenv("POSTGRES_PASSWORD")
-    baselineOnMigrate = true
-    locations = arrayOf("filesystem:src/main/resources/db/migration")
 }

@@ -1,0 +1,6 @@
+config:
+  port: 8090
+  db:
+    url: jdbc:postgresql://db:5432/db
+    user: postgres
+    password: password

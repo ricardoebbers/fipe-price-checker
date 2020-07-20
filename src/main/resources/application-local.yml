@@ -1,0 +1,9 @@
+config:
+  port: 8091
+  db:
+    url: jdbc:postgresql://localhost:5432/db
+    user: postgres
+    password: password
+spring:
+  jpa:
+    show-sql: true

@@ -2,6 +2,7 @@ package com.github.ricardoebbers.pricechecker.rest.command
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.ricardoebbers.pricechecker.domain.entity.Vehicle
 import java.math.BigDecimal
 import javax.validation.constraints.NotNull
@@ -12,33 +13,32 @@ import javax.validation.constraints.PositiveOrZero
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class CreateVehicleCommand(
         @field:Pattern(regexp = "\\w{3}-\\d{4}")
-        private val placa: String,
+        @field:JsonProperty(value = "placa")
+        val licensePlate: String,
 
         @field:NotNull
         @field:Positive
-        private val id_modelo: Int,
+        @field:JsonProperty(value = "id_modelo")
+        val modelId: Int,
 
         @field:Positive
-        private val id_marca: Int?,
+        @field:JsonProperty(value = "id_marca")
+        val brandId: Int?,
 
         @field:NotNull
         @field:PositiveOrZero
-        private val preco_anuncio: BigDecimal,
+        @field:JsonProperty(value = "preco_anuncio")
+        val marketPrice: BigDecimal,
 
         @field:NotNull
         @field:Positive
-        private val ano: Int
+        @field:JsonProperty(value = "ano")
+        val year: Int
 ) {
     @JsonIgnore
     fun toEntity() = Vehicle(
-            licensePlate = placa.toUpperCase(),
-            marketPrice = preco_anuncio,
-            year = ano
+            licensePlate = licensePlate.toUpperCase(),
+            marketPrice = marketPrice,
+            year = year
     )
-
-    @JsonIgnore
-    val modelId = id_modelo
-
-    @JsonIgnore
-    val brandId = id_marca
 }

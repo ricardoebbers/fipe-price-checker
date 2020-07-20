@@ -4,13 +4,11 @@ services:
     build: .
     container_name: app
     ports:
-      - 8080:8080
+      - 8090:8090
     restart: always
     depends_on:
       - mq
       - db
-    env_file:
-      - .env
   mq:
     image: rabbitmq:alpine
     container_name: mq
