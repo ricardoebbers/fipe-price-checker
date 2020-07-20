@@ -3,7 +3,6 @@ package com.github.ricardoebbers.pricechecker.domain.entity
 import org.hibernate.annotations.GenericGenerator
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing
 import java.math.BigDecimal
 import java.time.LocalDate
 import javax.persistence.Column
@@ -11,7 +10,6 @@ import javax.persistence.Entity
 import javax.persistence.EntityListeners
 import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
@@ -32,14 +30,14 @@ data class Vehicle(
         val marketPrice: BigDecimal,
         @Column(name = "ano", nullable = false)
         val year: Int,
-        @Column(name="preco_fipe")
+        @Column(name = "preco_fipe")
         var fipePrice: BigDecimal? = null,
-        @ManyToOne(fetch= FetchType.LAZY)
-        @JoinColumn(name="id_marca", nullable=false)
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "id_marca", nullable = false)
         val model: VehicleModel? = null,
         @CreatedDate
         val createDate: LocalDate = LocalDate.now()
 ) {
-        val modelName = model?.name
-        val brandName = model?.brandName
+    fun modelName() = model?.name
+    fun brandName() = model?.brandName()
 }

@@ -1,7 +1,6 @@
 package com.github.ricardoebbers.pricechecker.domain.entity
 
 import org.hibernate.annotations.GenericGenerator
-import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
@@ -20,9 +19,10 @@ data class VehicleModel(
         var id: String? = null,
         val name: String,
         val fipeId: Int,
-        @ManyToOne(fetch= FetchType.LAZY)
-        @JoinColumn(name="id_marca", nullable=false)
+        @ManyToOne(fetch = FetchType.EAGER)
+        @JoinColumn(name = "id_marca", nullable = false)
         val brand: VehicleBrand
 ) {
-        val brandName = brand.name
+    fun brandName() = brand.name
+    fun brandFipeId() = brand.fipeId
 }

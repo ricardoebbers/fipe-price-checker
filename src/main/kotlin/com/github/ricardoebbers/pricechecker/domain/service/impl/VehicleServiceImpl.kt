@@ -1,9 +1,10 @@
 package com.github.ricardoebbers.pricechecker.domain.service.impl
 
 import com.github.ricardoebbers.pricechecker.domain.entity.Vehicle
+import com.github.ricardoebbers.pricechecker.domain.exception.LicensePlateNotUniqueException
 import com.github.ricardoebbers.pricechecker.domain.repository.VehicleRepository
 import com.github.ricardoebbers.pricechecker.domain.service.VehicleService
-import com.github.ricardoebbers.pricechecker.rest.command.CreateVehicleCommand
+import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.stereotype.Service
 import java.util.logging.Logger
 
@@ -16,8 +17,20 @@ class VehicleServiceImpl(
         private val log = Logger.getLogger(VehicleServiceImpl::class.java.simpleName)
     }
 
-    override fun create(command: CreateVehicleCommand): Vehicle {
-        log.info("I=creating_vehicle, command=$command")
-        return command.toEntity()
+    override fun create(vehicle: Vehicle): Vehicle {
+        return saveUniqueVehicle(vehicle)
+    }
+
+    override fun listAll(): List<Vehicle> {
+        return repository.findAll()
+    }
+
+    private fun saveUniqueVehicle(vehicle: Vehicle): Vehicle {
+        return try {
+            repository.save(vehicle)
+        } catch (cve: DataIntegrityViolationException) {
+            log.warning("W=license_plate_not_unique, licensePlate=${vehicle.licensePlate}")
+            throw LicensePlateNotUniqueException(vehicle.licensePlate)
+        }
     }
 }

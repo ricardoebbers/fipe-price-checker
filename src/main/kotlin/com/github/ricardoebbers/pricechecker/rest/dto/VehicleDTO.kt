@@ -22,8 +22,10 @@ data class VehicleDTO(
                 ano = entity.year,
                 preco_fipe = entity.fipePrice,
                 data_cadastro = entity.createDate,
-                modelo = entity.modelName,
-                marca = entity.brandName
+                modelo = entity.modelName(),
+                marca = entity.brandName()
         )
+
+        fun from(entityList: List<Vehicle>) = entityList.map { from(it) }
     }
 }

@@ -4,5 +4,5 @@ import org.springframework.http.HttpStatus
 
 data class ErrorDTO(
         val message: String?,
-        val status: HttpStatus
+        val status: HttpStatus?
 )
