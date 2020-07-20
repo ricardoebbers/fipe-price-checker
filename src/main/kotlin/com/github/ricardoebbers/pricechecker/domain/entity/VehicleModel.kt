@@ -23,4 +23,6 @@ data class VehicleModel(
         @ManyToOne(fetch= FetchType.LAZY)
         @JoinColumn(name="id_marca", nullable=false)
         val brand: VehicleBrand
-) {}
+) {
+        val brandName = brand.name
+}

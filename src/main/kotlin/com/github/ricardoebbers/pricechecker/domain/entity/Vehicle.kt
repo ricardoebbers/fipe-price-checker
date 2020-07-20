@@ -36,7 +36,10 @@ data class Vehicle(
         var fipePrice: BigDecimal? = null,
         @ManyToOne(fetch= FetchType.LAZY)
         @JoinColumn(name="id_marca", nullable=false)
-        val model: VehicleModel,
+        val model: VehicleModel? = null,
         @CreatedDate
-        val createDate: LocalDate
-)
+        val createDate: LocalDate = LocalDate.now()
+) {
+        val modelName = model?.name
+        val brandName = model?.brandName
+}
