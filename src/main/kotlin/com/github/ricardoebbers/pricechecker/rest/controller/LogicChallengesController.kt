@@ -33,7 +33,6 @@ class LogicChallengesController(
     @GetMapping("/fibonacci/{nthNumber}")
     @Operation(summary = "Calcula o n-ésimo número da sequência fibonacci")
     fun getFibonacciNthNumber(@PathVariable
-                              @NotNull
                               @PositiveOrZero
                               @Max(1000)
                               @Parameter(description = "Número inteiro entre 0 e 1000, ex: 42")
@@ -48,10 +47,10 @@ class LogicChallengesController(
     @GetMapping("/least-change-calculator/{changeValue}")
     @Operation(summary = "Calcula o mínimo de cédulas possível para determinado valor")
     fun getLeastMoneyBillsForChange(@PathVariable
-                                    @NotNull
                                     @PositiveOrZero
                                     @Parameter(description = "Número inteiro positivo, ex: 188")
-                                    changeValue: Int): MoneyBillsDTO {
+                                    changeValue: Int
+    ): MoneyBillsDTO {
         log.info("I=init, changeValue=$changeValue")
         return MoneyBillsDTO.from(service.leastMoneyBillChange(changeValue)).also {
             log.info("I=finish, result=$it")
@@ -63,7 +62,8 @@ class LogicChallengesController(
     fun getSumOfEvenNumbers(@RequestBody
                             @NotNull
                             @SwaggerRequestBody(description = "Lista de números inteiros, ex: [1,2,3,4,5,6]")
-                            numbers: List<Int>): Int {
+                            numbers: List<Int>
+    ): Int {
         log.info("I=init, numbers=$numbers")
         return service.sumEvenNumbers(numbers).also {
             log.info("I=finish, result=$it")

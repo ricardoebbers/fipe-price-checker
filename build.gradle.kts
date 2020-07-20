@@ -32,6 +32,7 @@ dependencies {
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     // spring REST
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     // spring data
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -43,12 +44,15 @@ dependencies {
     implementation("org.flywaydb:flyway-core")
     // swagger
     implementation("org.springdoc:springdoc-openapi-ui:1.4.3")
+    implementation("org.springdoc:springdoc-openapi-kotlin:1.4.3")
     // tests
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
+        exclude(module = "mockito-core")
     }
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.4.2")
     testImplementation("org.springframework.amqp:spring-rabbit-test")
+    testImplementation("com.ninja-squad:springmockk:2.0.2")
 }
 
 tasks.withType<Test> {
