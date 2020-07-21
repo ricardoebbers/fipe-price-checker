@@ -37,7 +37,10 @@ class FipeClientImpl(
     }
 
     private fun fetchFipePrice(message: VehicleMessage): FipePriceDTO {
-        return restTemplate.getForObject(buildUrl(message))
+        return buildUrl(message).let {
+            log.info("I=fetching_fipe_price, url=$it")
+            restTemplate.getForObject(it)
+        }
     }
 
     private fun buildUrl(message: VehicleMessage): String = String
