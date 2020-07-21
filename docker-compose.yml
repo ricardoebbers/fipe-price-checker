@@ -10,13 +10,15 @@ services:
       - mq
       - db
   mq:
-    image: rabbitmq:alpine
+    image: library/rabbitmq:management-alpine
     container_name: mq
     ports:
       - 5672:5672
       - 15672:15672
+    env_file:
+      - .env
   db:
-    image: postgres:alpine
+    image: library/postgres:alpine
     container_name: db
     ports:
       - 5432:5432

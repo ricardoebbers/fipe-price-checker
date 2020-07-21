@@ -11,7 +11,7 @@ import javax.validation.constraints.Positive
 import javax.validation.constraints.PositiveOrZero
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class CreateVehicleCommand(
+data class RequestVehiclePriceCommand(
         @field:Pattern(regexp = "\\w{3}-\\d{4}")
         @field:JsonProperty(value = "placa")
         val licensePlate: String,

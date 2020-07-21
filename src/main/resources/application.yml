@@ -10,6 +10,11 @@ spring:
     username: ${config.db.user}
     password: ${config.db.password}
     url: ${config.db.url}
+  rabbitmq:
+    host: ${config.mq.host}
+    port: ${config.mq.port}
+    username: ${config.mq.username}
+    password: ${config.mq.password}
 flyway:
   url: ${config.db.url}
   user: ${config.db.user}

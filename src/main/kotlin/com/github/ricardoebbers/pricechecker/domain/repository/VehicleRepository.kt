@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface VehicleRepository : JpaRepository<Vehicle, String> {
-    fun findOneByLicensePlateIgnoreCase(licensePlate: String): Vehicle
+    fun findByLicensePlateIgnoreCase(licensePlate: String): Vehicle?
 }

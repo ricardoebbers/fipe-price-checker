@@ -4,6 +4,21 @@ config:
     url: jdbc:postgresql://localhost:5432/db
     user: postgres
     password: password
+  mq:
+    host: localhost
+    port: 5672
+    username: rabbit
+    password: password
+    check-price:
+      queue: check-price.queue
+      exchange: check-price.exchange
+      routingKey: check-price.routingkey
+    create-vehicle:
+      queue: create-vehicle.queue
+      exchange: create-vehicle.exchange
+      routingKey: create-vehicle.routingkey
+
+
 spring:
   jpa:
     show-sql: true

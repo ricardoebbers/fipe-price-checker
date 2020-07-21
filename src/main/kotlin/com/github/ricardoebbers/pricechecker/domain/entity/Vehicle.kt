@@ -40,4 +40,6 @@ data class Vehicle(
 ) {
     fun modelName() = model?.name
     fun brandName() = model?.brandName()
+    fun modelFipeId() = model?.fipeId
+    fun brandFipeId() = model?.brandFipeId()
 }

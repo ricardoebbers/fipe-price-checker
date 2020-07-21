@@ -1,12 +1,13 @@
 package com.github.ricardoebbers.pricechecker.rest.controller
 
 import com.github.ricardoebbers.pricechecker.domain.facade.VehicleFacade
-import com.github.ricardoebbers.pricechecker.rest.command.CreateVehicleCommand
+import com.github.ricardoebbers.pricechecker.rest.command.RequestVehiclePriceCommand
 import com.github.ricardoebbers.pricechecker.rest.dto.VehicleDTO
 import com.github.ricardoebbers.pricechecker.rest.dto.VehicleModelDTO
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.tags.Tag
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -28,15 +29,14 @@ class VehicleController(
     @PostMapping
     @Operation(summary = "Cria um veículo na base de dados",
             responses = [
-                ApiResponse(responseCode = "201", description = "Veículo criado"),
+                ApiResponse(responseCode = "202", description = "Solicitação de criação de veículo registrada"),
                 ApiResponse(responseCode = "400", description = "Argumentos inválidos"),
                 ApiResponse(responseCode = "404", description = "Modelo ou marca não encontrados")]
     )
-    fun createVehicle(@Valid @RequestBody command: CreateVehicleCommand): VehicleDTO {
+    fun createVehicle(@Valid @RequestBody command: RequestVehiclePriceCommand): ResponseEntity<Unit> {
         log.info("I=init, command=$command")
-        return VehicleDTO.from(facade.create(command)).also {
-            log.info("I=finish, vehicle=$it")
-        }
+        facade.requestPrice(command)
+        return ResponseEntity.accepted().build()
     }
 
     @GetMapping("/modelos")
