@@ -1,4 +1,4 @@
-package com.github.ricardoebbers.pricechecker.rest.command
+package com.github.ricardoebbers.pricechecker.rest.api.command
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties

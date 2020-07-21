@@ -1,9 +1,9 @@
-package com.github.ricardoebbers.pricechecker.rest.controller
+package com.github.ricardoebbers.pricechecker.rest.api.controller
 
 import com.github.ricardoebbers.pricechecker.domain.facade.VehicleFacade
-import com.github.ricardoebbers.pricechecker.rest.command.RequestVehiclePriceCommand
-import com.github.ricardoebbers.pricechecker.rest.dto.VehicleDTO
-import com.github.ricardoebbers.pricechecker.rest.dto.VehicleModelDTO
+import com.github.ricardoebbers.pricechecker.rest.api.command.RequestVehiclePriceCommand
+import com.github.ricardoebbers.pricechecker.rest.api.dto.VehicleDTO
+import com.github.ricardoebbers.pricechecker.rest.api.dto.VehicleModelDTO
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.tags.Tag

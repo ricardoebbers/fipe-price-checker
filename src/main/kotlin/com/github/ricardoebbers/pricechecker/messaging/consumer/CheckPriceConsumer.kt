@@ -1,5 +1,6 @@
 package com.github.ricardoebbers.pricechecker.messaging.consumer
 
+import com.github.ricardoebbers.pricechecker.domain.exception.VehiclePriceNotFound
 import com.github.ricardoebbers.pricechecker.messaging.message.VehicleMessage
 import com.github.ricardoebbers.pricechecker.rest.client.FipeClient
 import org.springframework.amqp.rabbit.annotation.RabbitListener
@@ -18,6 +19,10 @@ class CheckPriceConsumer(
     @RabbitListener(queues = ["\${config.mq.check-price.queue}"])
     fun onMessage(message: VehicleMessage) {
         log.info("I=received_message, message=$message")
-        fipeClient.checkPrice(message)
+        try {
+            fipeClient.checkPrice(message)
+        } catch (vpnf: VehiclePriceNotFound) {
+            log.warning("I=message_processed_with_known_error, exception=${vpnf.message}")
+        }
     }
 }

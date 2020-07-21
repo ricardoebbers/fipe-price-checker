@@ -1,7 +1,7 @@
-package com.github.ricardoebbers.pricechecker.rest.controller
+package com.github.ricardoebbers.pricechecker.rest.api.controller
 
 import com.github.ricardoebbers.pricechecker.domain.service.LogicChallengesService
-import com.github.ricardoebbers.pricechecker.rest.dto.MoneyBillsDTO
+import com.github.ricardoebbers.pricechecker.rest.api.dto.MoneyBillsDTO
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.tags.Tag

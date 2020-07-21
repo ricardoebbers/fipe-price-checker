@@ -1,11 +1,10 @@
-package com.github.ricardoebbers.pricechecker.rest.controller
+package com.github.ricardoebbers.pricechecker.rest.api.controller
 
 import com.github.ricardoebbers.pricechecker.domain.exception.BusinessException
-import com.github.ricardoebbers.pricechecker.rest.dto.ErrorDTO
+import com.github.ricardoebbers.pricechecker.rest.api.dto.ErrorDTO
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.HttpStatus.BAD_REQUEST
-import org.springframework.http.HttpStatus.NOT_FOUND
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.web.bind.MethodArgumentNotValidException

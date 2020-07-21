@@ -6,7 +6,7 @@ import com.github.ricardoebbers.pricechecker.domain.facade.VehicleFacade
 import com.github.ricardoebbers.pricechecker.domain.service.VehicleModelService
 import com.github.ricardoebbers.pricechecker.domain.service.VehicleService
 import com.github.ricardoebbers.pricechecker.messaging.message.VehicleMessage
-import com.github.ricardoebbers.pricechecker.rest.command.RequestVehiclePriceCommand
+import com.github.ricardoebbers.pricechecker.rest.api.command.RequestVehiclePriceCommand
 import org.springframework.stereotype.Component
 
 @Component

@@ -1,4 +1,4 @@
-package com.github.ricardoebbers.pricechecker.rest.dto
+package com.github.ricardoebbers.pricechecker.rest.api.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.ricardoebbers.pricechecker.domain.entity.VehicleModel

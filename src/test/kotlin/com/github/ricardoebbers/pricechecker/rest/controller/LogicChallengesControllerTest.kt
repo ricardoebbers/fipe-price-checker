@@ -3,6 +3,7 @@ package com.github.ricardoebbers.pricechecker.rest.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.ricardoebbers.pricechecker.domain.enums.MoneyBill
 import com.github.ricardoebbers.pricechecker.domain.service.LogicChallengesService
+import com.github.ricardoebbers.pricechecker.rest.api.controller.LogicChallengesController
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
 import org.junit.jupiter.api.Test

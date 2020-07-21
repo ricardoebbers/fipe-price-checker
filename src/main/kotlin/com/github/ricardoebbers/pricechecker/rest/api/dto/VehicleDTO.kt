@@ -1,4 +1,4 @@
-package com.github.ricardoebbers.pricechecker.rest.dto
+package com.github.ricardoebbers.pricechecker.rest.api.dto
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
