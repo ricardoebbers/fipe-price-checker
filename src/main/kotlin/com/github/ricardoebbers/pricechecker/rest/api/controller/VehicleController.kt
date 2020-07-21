@@ -1,5 +1,6 @@
 package com.github.ricardoebbers.pricechecker.rest.api.controller
 
+import com.github.ricardoebbers.pricechecker.domain.entity.Vehicle
 import com.github.ricardoebbers.pricechecker.domain.facade.VehicleFacade
 import com.github.ricardoebbers.pricechecker.rest.api.command.RequestVehiclePriceCommand
 import com.github.ricardoebbers.pricechecker.rest.api.dto.VehicleDTO
@@ -9,12 +10,14 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.util.logging.Logger
 import javax.validation.Valid
+import javax.validation.constraints.Pattern
 
 @RestController
 @RequestMapping("/v1/veiculos")
@@ -57,5 +60,21 @@ class VehicleController(
     )
     fun listVehicles(): List<VehicleDTO> {
         return VehicleDTO.from(facade.listVehicles())
+    }
+
+    @GetMapping("/{licensePlate}")
+    @Operation(summary = "Busca veículo pela placa cadastrada",
+            responses = [
+                ApiResponse(responseCode = "200", description = "Veículo encontrado"),
+                ApiResponse(responseCode = "404", description = "Veículo não encontrado"),
+                ApiResponse(responseCode = "400", description = "Consulta inválida")]
+    )
+    fun findByLicensePlate(@PathVariable
+                           @Pattern(regexp = "\\w{3}-\\d{4}")
+                           licensePlate: String): ResponseEntity<Vehicle> {
+        return facade.findByLicensePlate(licensePlate)?.let {
+            ResponseEntity.ok().body(it)
+        } ?: ResponseEntity.notFound().build()
+
     }
 }

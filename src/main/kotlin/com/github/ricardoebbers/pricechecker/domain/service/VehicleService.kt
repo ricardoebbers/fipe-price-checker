@@ -6,4 +6,5 @@ interface VehicleService {
     fun requestPrice(vehicle: Vehicle)
     fun saveVehicle(vehicle: Vehicle): Vehicle
     fun listAll(): List<Vehicle>
+    fun findByLicensePlate(licensePlate: String): Vehicle?
 }

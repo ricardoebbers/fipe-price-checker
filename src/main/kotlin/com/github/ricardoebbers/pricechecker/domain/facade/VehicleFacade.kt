@@ -10,4 +10,5 @@ interface VehicleFacade {
     fun listVehicles(): List<Vehicle>
     fun listModels(): List<VehicleModel>
     fun createVehicle(message: VehicleMessage)
+    fun findByLicensePlate(licensePlate: String): Vehicle?
 }

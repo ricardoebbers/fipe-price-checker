@@ -25,6 +25,10 @@ class VehicleServiceImpl(
         publisher.send(VehicleMessage.from(vehicle))
     }
 
+    override fun findByLicensePlate(licensePlate: String): Vehicle? {
+        return repository.findByLicensePlateIgnoreCase(licensePlate)
+    }
+
     override fun saveVehicle(vehicle: Vehicle): Vehicle {
         return saveUniqueVehicle(vehicle)
     }

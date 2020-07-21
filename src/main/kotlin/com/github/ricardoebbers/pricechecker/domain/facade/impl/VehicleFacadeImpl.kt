@@ -33,4 +33,8 @@ class VehicleFacadeImpl(
         val vehicle = message.toEntity().copy(model = model)
         vehicleService.saveVehicle(vehicle)
     }
+
+    override fun findByLicensePlate(licensePlate: String): Vehicle? {
+        return vehicleService.findByLicensePlate(licensePlate)
+    }
 }
